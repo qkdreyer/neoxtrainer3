@@ -10,7 +10,7 @@
 
 MainForm::MainForm() {
     widget.setupUi(this);
-    widget.listView->setItemDelegate(new CharacterDelegate());
+    widget.listView->setItemDelegate(new CharacterDelegate(this));
     setModel();
 
     connect(widget.addButton, SIGNAL(clicked()), this, SLOT(execCharacterForm()));
@@ -53,7 +53,7 @@ void MainForm::saveCharacter(Character c) {
 }
 
 void MainForm::setModel() {
-    QSqlQueryModel* model = dbm.getCharacterModel();
+    QSqlTableModel* model = dbm.getCharacterModel();
     widget.listView->setModel(model);
     QModelIndex firstIndex = model->index(0, 0);
     bool isRecord = firstIndex.isValid();

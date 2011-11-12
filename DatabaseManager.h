@@ -10,7 +10,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QVariant>
-#include <QSqlQueryModel>
+#include <QSqlTableModel>
 #include "Character.h"
 
 class DatabaseManager {
@@ -21,7 +21,7 @@ public:
     bool openDB();
     bool hasCharacterTable();
     bool createCharacterTable();
-    QSqlQueryModel* getCharacterModel();
+    QSqlTableModel* getCharacterModel();
     int createCharacter(Character);
     Character readCharacter(int);
     bool deleteCharacter(int);
@@ -29,7 +29,7 @@ private:
     QSqlDatabase db;
     QString dbname;
     QString tblname;
-    QSqlQueryModel* model;
+    QSqlTableModel* model;
 };
 
 #endif	/* DATABASEMANAGER_H */

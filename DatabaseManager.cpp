@@ -11,7 +11,7 @@
 DatabaseManager::DatabaseManager() {
     dbname = "characters";
     tblname = "character";
-    model = new QSqlQueryModel;
+    model = new QSqlTableModel;
     openDB();
     createCharacterTable();
 }
@@ -51,10 +51,10 @@ bool DatabaseManager::createCharacterTable() {
     return ret;
 }
 
-QSqlQueryModel* DatabaseManager::getCharacterModel() {
-    model->setQuery("select name || ' (' || server || ' ' || channel || ')' as display, "
-        "id, login, password, server, channel, name from " + tblname);
-    model->setHeaderData(1, Qt::Horizontal, "id", 1);
+QSqlTableModel* DatabaseManager::getCharacterModel() {
+    //model->setQuery("select name || ' (' || server || ' ' || channel || ')' as display, id, login, password, server, channel, name from " + tblname);
+    model->setTable(tblname);
+    model->select();
     return model;
 }
 

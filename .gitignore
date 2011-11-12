@@ -1,5 +1,9 @@
 /build/
 /dist/
 /nbproject/private/
-/moc_*
+moc_*
+ui_*
+object_script.neoxtrainer3
+.dep.inc
 characters
+neoxtrainer3_resource.rc

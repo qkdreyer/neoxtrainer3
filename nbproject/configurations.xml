@@ -18,7 +18,6 @@
       <itemPath>AboutForm.ui</itemPath>
       <itemPath>CharacterForm.ui</itemPath>
       <itemPath>MainForm.ui</itemPath>
-      <itemPath>briefcase.ico</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -40,8 +39,10 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>.gitignore</itemPath>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>CharacterDelegate.cpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
