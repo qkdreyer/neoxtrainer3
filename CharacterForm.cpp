@@ -29,13 +29,11 @@ CharacterForm::CharacterForm(Character c, QDialog* parent = 0) : QDialog(parent)
     widget.serverCombo->addItems(serverList);
 
     if (character.exist()) {
-        cout << "exist" << character.getId().toStdString() << endl;
         widget.loginField->setText(character.getLogin());
         widget.passwordField->setText(character.getPassword());
         widget.pinField->setText(character.getPin());
-        //widget.serverCombo TODO
-        widget.serverCombo->setCurrentIndex(0);
-        widget.channelCombo->setCurrentIndex(0);
+        widget.serverCombo->setCurrentIndex(widget.serverCombo->findText(character.getServer()));
+        widget.channelCombo->setCurrentIndex(widget.channelCombo->findText(character.getChannel()));
         widget.nameField->setText(character.getName());
         widget.passwordField->installEventFilter(this);
     }
