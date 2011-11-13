@@ -6,8 +6,6 @@
  */
 
 #include "MainForm.h"
-#include <iostream>
-using namespace std;
 
 MainForm::MainForm() {
     widget.setupUi(this);
@@ -76,6 +74,7 @@ void MainForm::loginCharacter() {
     QString title = "WIP " + widget.listView->currentIndex().data(0).toString();
     QMessageBox wip(QMessageBox::Information, title, "Work in Progress !");
     wip.exec();
+    MapleStory ms;
 }
 
 void MainForm::aboutNeoxTrainer() {

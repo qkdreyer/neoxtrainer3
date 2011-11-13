@@ -1,0 +1,12 @@
+Neox Trainer
+============
+
+Neox Trainer is a MapleStory Wrapper made by Neoxyde using C++ (Qt 4.7).
+
+TODO
+----
+code login feature
+code packet sending feature
+code packet blocking feature
+
+focus add when db is empty

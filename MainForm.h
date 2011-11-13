@@ -14,6 +14,7 @@
 #include "CharacterForm.h"
 #include "DatabaseManager.h"
 #include "AboutForm.h"
+#include "MapleStory.h"
 
 class MainForm : public QDialog {
     Q_OBJECT
