@@ -1,7 +1,7 @@
 # This file is generated automatically. Do not edit.
 # Use project properties -> Build -> Qt -> Expert -> Custom Definitions.
 TEMPLATE = app
-DESTDIR = dist/Debug/MinGW_QT-Windows
+DESTDIR = dist
 TARGET = neoxtrainer
 VERSION = 3.0
 CONFIG -= debug_and_release app_bundle lib_bundle

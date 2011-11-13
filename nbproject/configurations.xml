@@ -53,12 +53,25 @@
         <compilerSet>MinGW_QT|MinGW</compilerSet>
       </toolsSet>
       <qt>
+        <destdir>${CND_DISTDIR}</destdir>
         <target>neoxtrainer</target>
         <version>3.0</version>
         <modules>core gui sql</modules>
       </qt>
       <compileType>
       </compileType>
+      <packaging>
+        <packType>Zip</packType>
+        <output>${CND_DISTDIR}/neoxtrainer3.zip</output>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}.exe"
+                            from="${OUTPUT_PATH}.exe"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+      </packaging>
     </conf>
     <conf name="Release" type="4">
       <toolsSet>
@@ -66,8 +79,10 @@
         <compilerSet>MinGW_QT|MinGW</compilerSet>
       </toolsSet>
       <qt>
+        <destdir>${CND_DISTDIR}/</destdir>
+        <version>3.0</version>
         <buildMode>1</buildMode>
-        <modules>core gui</modules>
+        <modules>core gui sql</modules>
       </qt>
       <compileType>
         <cTool>
