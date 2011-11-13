@@ -44,6 +44,8 @@
       <itemPath>Makefile</itemPath>
       <itemPath>neoxtrainer3_resource.rc</itemPath>
     </logicalFolder>
+    <itemPath>MapleStory.cpp</itemPath>
+    <itemPath>MapleStory.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

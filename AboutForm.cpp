@@ -7,8 +7,9 @@
 
 #include "AboutForm.h"
 
-AboutForm::AboutForm(QDialog* parent = 0) : QDialog(parent) {
+AboutForm::AboutForm(QString text, QDialog* parent = 0) : QDialog(parent) {
     widget.setupUi(this);
+    widget.label->setText(text);
 }
 
 AboutForm::~AboutForm() {

@@ -13,7 +13,7 @@
 class AboutForm : public QDialog {
     Q_OBJECT
 public:
-    AboutForm(QDialog*);
+    AboutForm(QString, QDialog*);
     virtual ~AboutForm();
 private:
     Ui::AboutForm widget;

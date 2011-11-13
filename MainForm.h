@@ -9,6 +9,7 @@
 #define	_MAINFORM_H
 
 #include "ui_MainForm.h"
+#include <QMessageBox>
 #include "CharacterDelegate.h"
 #include "CharacterForm.h"
 #include "DatabaseManager.h"

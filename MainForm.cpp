@@ -73,11 +73,13 @@ void MainForm::setButtonsStates(QModelIndex i) {
 }
 
 void MainForm::loginCharacter() {
-    cout << widget.listView->currentIndex().data(0).toInt() << endl;
+    QString title = "WIP " + widget.listView->currentIndex().data(0).toString();
+    QMessageBox wip(QMessageBox::Information, title, "Work in Progress !");
+    wip.exec();
 }
 
 void MainForm::aboutNeoxTrainer() {
-    AboutForm form(this);
+    AboutForm form("Neox Trainer made by Neoxyde", this);
     form.setWindowFlags(form.windowFlags() & ~Qt::WindowContextHelpButtonHint);
     form.exec();
 }
