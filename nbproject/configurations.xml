@@ -11,6 +11,7 @@
       <itemPath>Crypto.h</itemPath>
       <itemPath>DatabaseManager.h</itemPath>
       <itemPath>MainForm.h</itemPath>
+      <itemPath>MapleStory.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -29,6 +30,7 @@
       <itemPath>Crypto.cpp</itemPath>
       <itemPath>DatabaseManager.cpp</itemPath>
       <itemPath>MainForm.cpp</itemPath>
+      <itemPath>MapleStory.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -42,10 +44,9 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>.gitignore</itemPath>
       <itemPath>Makefile</itemPath>
-      <itemPath>neoxtrainer3_resource.rc</itemPath>
+      <itemPath>README</itemPath>
     </logicalFolder>
-    <itemPath>MapleStory.cpp</itemPath>
-    <itemPath>MapleStory.h</itemPath>
+    <itemPath>neoxtrainer.qrc</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -86,6 +87,9 @@
         <version>3.0</version>
         <buildMode>1</buildMode>
         <modules>core gui sql</modules>
+        <defs>
+          <Elem>RESOURCES = neoxtrainer.qrc</Elem>
+        </defs>
       </qt>
       <compileType>
         <cTool>

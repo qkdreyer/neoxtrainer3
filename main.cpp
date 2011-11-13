@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[]) {
     // initialize resources, if needed
-    //Q_INIT_RESOURCE(resfile);
+    Q_INIT_RESOURCE(neoxtrainer);
 
     QApplication app(argc, argv);
     QString version = "3.0";

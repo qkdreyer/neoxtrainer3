@@ -2,6 +2,7 @@
 /nbproject/private/
 moc_*
 ui_*
+qrc_*
 .dep.inc
 *_resource.rc
 object_script.*

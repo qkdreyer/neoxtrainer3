@@ -14,8 +14,8 @@
    <string>Neox Trainer</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>briefcase.ico</normaloff>briefcase.ico</iconset>
+   <iconset resource="neoxtrainer.qrc">
+    <normaloff>:/briefcase.ico</normaloff>:/briefcase.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="7">
@@ -75,6 +75,8 @@
   <tabstop>deleteButton</tabstop>
   <tabstop>aboutButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="neoxtrainer.qrc"/>
+ </resources>
  <connections/>
 </ui>
