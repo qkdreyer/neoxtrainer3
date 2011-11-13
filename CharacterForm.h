@@ -18,12 +18,14 @@ public:
     CharacterForm();
     CharacterForm(Character, QDialog*);
     virtual ~CharacterForm();
+    bool eventFilter(QObject*, QEvent*);
 private slots:
     void accept();
 signals:
     void saveCharacter(Character);
 private:
     Ui::CharacterForm widget;
+    Character character;
 };
 
 #endif	/* _CHARACTERFORM_H */

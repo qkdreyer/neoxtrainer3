@@ -5,33 +5,18 @@
  * Created on 11 novembre 2011, 23:42
  */
 
+#include <basetyps.h>
+
 #include "Character.h"
 
 Character::Character() {
 }
 
-Character::Character(QHash<QString, QString> c) {
-    login = c.value("login");
-    password = c.value("password");
-    pin = c.value("pin");
-    server = c.value("server");
-    channel = c.value("channel");
-    name = c.value("name");
-}
-
 Character::~Character() {
 }
 
-bool Character::isNull() {
-    return id.isEmpty();
-}
-
-bool Character::isEmpty() {
-    return login.isEmpty();
-}
-
-void Character::setId(int i) {
-    id = i;
+bool Character::exist() {
+    return !login.isEmpty();
 }
 
 QString Character::getId() const {
@@ -60,4 +45,32 @@ QString Character::getServer() const {
 
 QString Character::getName() const {
     return name;
+}
+
+void Character::setChannel(QString channel) {
+    this->channel = channel;
+}
+
+void Character::setId(QString id) {
+    this->id = id;
+}
+
+void Character::setLogin(QString login) {
+    this->login = login;
+}
+
+void Character::setName(QString name) {
+    this->name = name;
+}
+
+void Character::setPassword(QString password) {
+    this->password = password;
+}
+
+void Character::setPin(QString pin) {
+    this->pin = pin;
+}
+
+void Character::setServer(QString server) {
+    this->server = server;
 }

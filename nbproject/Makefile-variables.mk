@@ -9,8 +9,8 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW_QT-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW_QT-Windows
-CND_ARTIFACT_NAME_Debug=neoxtrainer3
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW_QT-Windows/neoxtrainer3
+CND_ARTIFACT_NAME_Debug=neoxtrainer
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW_QT-Windows/neoxtrainer
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW_QT-Windows/package
 CND_PACKAGE_NAME_Debug=neoxtrainer3.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/MinGW_QT-Windows/package/neoxtrainer3.tar

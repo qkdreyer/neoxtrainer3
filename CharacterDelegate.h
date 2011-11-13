@@ -7,6 +7,8 @@
 
 #ifndef CHARACTERDELEGATE_H
 #define CHARACTERDELEGATE_H
+#include <QApplication>
+#include <QPainter>
 #include <QStyledItemDelegate>
 
 class CharacterDelegate : public QStyledItemDelegate {
@@ -15,7 +17,6 @@ public:
     CharacterDelegate(QWidget*);
 protected:
     void paint(QPainter*, const QStyleOptionViewItem&, const QModelIndex&) const;
-    QSize sizeHint(const QStyleOptionViewItem&, const QModelIndex&) const;
 };
 
 #endif	/* CHARACTERDELEGATE_H */

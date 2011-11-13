@@ -6,14 +6,13 @@
  */
 
 #include "DatabaseManager.h"
-#include <iostream>
 
 DatabaseManager::DatabaseManager() {
     dbname = "characters";
     tblname = "character";
-    model = new QSqlTableModel;
     openDB();
     createCharacterTable();
+    model = new QSqlTableModel;
 }
 
 DatabaseManager::~DatabaseManager() {
@@ -52,7 +51,6 @@ bool DatabaseManager::createCharacterTable() {
 }
 
 QSqlTableModel* DatabaseManager::getCharacterModel() {
-    //model->setQuery("select name || ' (' || server || ' ' || channel || ')' as display, id, login, password, server, channel, name from " + tblname);
     model->setTable(tblname);
     model->select();
     return model;
@@ -76,14 +74,43 @@ int DatabaseManager::createCharacter(Character c) {
 }
 
 Character DatabaseManager::readCharacter(int id) {
-    return Character();
+    Character character = Character();
+    if (db.isOpen()) {
+        QSqlQuery query(QString("select * from " + tblname + " where id=%1").arg(id));
+        if (query.next()) {
+            character.setId(query.value(0).toString());
+            character.setLogin(query.value(1).toString());
+            character.setPassword(query.value(2).toString());
+            character.setPin(query.value(3).toString());
+            character.setServer(query.value(4).toString());
+            character.setChannel(query.value(5).toString());
+            character.setName(query.value(6).toString());
+        }
+    }
+    return character;
+}
+
+bool DatabaseManager::updateCharacter(Character c) {
+    bool ret = false;
+    if (db.isOpen()) {
+        QSqlQuery query;
+        ret = query.exec("update " + tblname + " set "
+                "login = '" + c.getLogin() + "', "
+                "password = '" + c.getPassword() + "', "
+                "pin = '" + c.getPin() + "', "
+                "server = '" + c.getServer() + "', "
+                "channel = '" + c.getChannel() + "', "
+                "name = '" + c.getName() + "' "
+                "where id = " + c.getId());
+    }
+    return ret;
 }
 
 bool DatabaseManager::deleteCharacter(int id) {
     bool ret = false;
     if (db.isOpen()) {
         QSqlQuery query;
-        ret = query.exec(QString("delete from " + tblname + " where id=:id").arg(id));
+        ret = query.exec(QString("delete from " + tblname + " where id=%1").arg(id));
     }
     return ret;
 }

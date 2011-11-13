@@ -19,13 +19,13 @@ class MainForm : public QDialog {
 public:
     MainForm();
     virtual ~MainForm();
-    void setModel();
 public slots:
     void execCharacterForm(); // add or edit
     void deleteCharacter();
     void loginCharacter();
     void aboutNeoxTrainer();
-    void saveCharacter(Character);
+    void saveCharacter(Character); // add and edit
+    void setButtonsStates(QModelIndex);
 private:
     Ui::MainForm widget;
     DatabaseManager dbm;

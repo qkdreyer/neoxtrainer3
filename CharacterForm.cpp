@@ -8,19 +8,22 @@
 #include "CharacterForm.h"
 #include <iostream>
 
-CharacterForm::CharacterForm() {    
+CharacterForm::CharacterForm() {
 }
 
 CharacterForm::CharacterForm(Character c, QDialog* parent = 0) : QDialog(parent) {
     widget.setupUi(this);
-    
-    if (!c.isEmpty()) {
-        widget.loginField->setText(c.getLogin());
-        widget.passwordField->setText(c.getPassword());
-        widget.pin->setText(c.getPin());
-        widget.name->setText(c.getName());
+    widget.passwordField->installEventFilter(this);
+    widget.pinField->setValidator(new QIntValidator(this));
+    character = c;
+
+    if (character.exist()) {
+        widget.loginField->setText(character.getLogin());
+        widget.passwordField->setText(character.getPassword());
+        widget.pinField->setText(character.getPin());
+        widget.nameField->setText(character.getName());
     }
-    
+
     QStringList channelList;
     channelList << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8" << "9" << "10" << "11" << "12" << "13" << "14";
     widget.channelCombo->addItems(channelList);
@@ -33,6 +36,15 @@ CharacterForm::CharacterForm(Character c, QDialog* parent = 0) : QDialog(parent)
 CharacterForm::~CharacterForm() {
 }
 
+bool CharacterForm::eventFilter(QObject* target, QEvent* event) {
+    if (target == widget.passwordField) {
+        if (event->type() == QEvent::FocusIn) {
+            widget.passwordField->setText("");
+        }
+    }
+    return QDialog::eventFilter(target, event);
+}
+
 void CharacterForm::accept() {
     if (widget.loginField->text().isEmpty()) {
         widget.loginField->setFocus();
@@ -43,14 +55,16 @@ void CharacterForm::accept() {
     } else if (widget.nameField->text().isEmpty()) {
         widget.nameField->setFocus();
     } else {
-        QHash<QString, QString> c;
-        c.insert("login", widget.loginField->text());
-        c.insert("password", Crypto::toSHA1(widget.passwordField->text()));
-        c.insert("pin", widget.pinField->text());
-        c.insert("server", widget.serverCombo->currentText());
-        c.insert("channel", widget.channelCombo->currentText());
-        c.insert("name", widget.nameField->text());
-        emit saveCharacter(Character(c));
+        character.setLogin(widget.loginField->text());
+        QString currentPassword = widget.passwordField->text();
+        if (character.getPassword() != currentPassword) {
+            character.setPassword(Crypto::toSHA1(currentPassword));
+        }
+        character.setPin(widget.pinField->text());
+        character.setServer(widget.serverCombo->currentText());
+        character.setChannel(widget.channelCombo->currentText());
+        character.setName(widget.nameField->text());
+        emit saveCharacter(character);
         emit done(1);
     }
 }

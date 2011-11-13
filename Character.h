@@ -13,12 +13,8 @@
 class Character {
 public:
     Character();
-    Character(QHash<QString, QString>);
-    //Character(const Character& orig); //is called faster any constructor
     virtual ~Character();
-    bool isNull();
-    bool isEmpty();
-    void setId(int);
+    bool exist();
     QString getId() const;
     QString getLogin() const;
     QString getPassword() const;
@@ -26,6 +22,13 @@ public:
     QString getServer() const;
     QString getChannel() const;
     QString getName() const;
+    void setId(QString);
+    void setLogin(QString);
+    void setPassword(QString);
+    void setPin(QString);
+    void setServer(QString);
+    void setChannel(QString);
+    void setName(QString);
 private:
     QString id;
     QString login;

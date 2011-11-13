@@ -24,6 +24,7 @@ public:
     QSqlTableModel* getCharacterModel();
     int createCharacter(Character);
     Character readCharacter(int);
+    bool updateCharacter(Character);
     bool deleteCharacter(int);
 private:
     QSqlDatabase db;

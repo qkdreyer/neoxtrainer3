@@ -24,6 +24,7 @@
                    projectFiles="true">
       <itemPath>AboutForm.cpp</itemPath>
       <itemPath>Character.cpp</itemPath>
+      <itemPath>CharacterDelegate.cpp</itemPath>
       <itemPath>CharacterForm.cpp</itemPath>
       <itemPath>Crypto.cpp</itemPath>
       <itemPath>DatabaseManager.cpp</itemPath>
@@ -41,8 +42,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>.gitignore</itemPath>
       <itemPath>Makefile</itemPath>
+      <itemPath>neoxtrainer3_resource.rc</itemPath>
     </logicalFolder>
-    <itemPath>CharacterDelegate.cpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -52,6 +53,8 @@
         <compilerSet>MinGW_QT|MinGW</compilerSet>
       </toolsSet>
       <qt>
+        <target>neoxtrainer</target>
+        <version>3.0</version>
         <modules>core gui sql</modules>
       </qt>
       <compileType>

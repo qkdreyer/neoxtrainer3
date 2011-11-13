@@ -7,71 +7,73 @@
 
 #include "MainForm.h"
 #include <iostream>
+using namespace std;
 
 MainForm::MainForm() {
     widget.setupUi(this);
+    widget.listView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     widget.listView->setItemDelegate(new CharacterDelegate(this));
-    setModel();
+    
+    QSqlTableModel* model = dbm.getCharacterModel();
+    widget.listView->setModel(model);
+    widget.listView->setCurrentIndex(model->index(0, 0));
+    this->setButtonsStates(widget.listView->currentIndex());
 
     connect(widget.addButton, SIGNAL(clicked()), this, SLOT(execCharacterForm()));
     connect(widget.editButton, SIGNAL(clicked()), this, SLOT(execCharacterForm()));
     connect(widget.deleteButton, SIGNAL(clicked()), this, SLOT(deleteCharacter()));
     connect(widget.loginButton, SIGNAL(clicked()), this, SLOT(loginCharacter()));
     connect(widget.aboutButton, SIGNAL(clicked()), this, SLOT(aboutNeoxTrainer()));
-    connect(widget.listView, SIGNAL(clicked(QModelIndex)), this, SLOT(changeCharacter()));
+    connect(widget.listView, SIGNAL(clicked(QModelIndex)), this, SLOT(setButtonsStates(QModelIndex)));
 }
 
 MainForm::~MainForm() {
 }
 
 void MainForm::execCharacterForm() {
-    int selectedCharacterId = widget.listView->currentIndex().row(); // wrong
-    CharacterForm form(dbm.readCharacter(selectedCharacterId), this);
-    form.setWindowFlags(form.windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
+    CharacterForm* form;
     if (this->sender() == widget.addButton) {
-        form.setWindowTitle("Add " + form.windowTitle());
+        form = new CharacterForm(Character(), this);
+        (*form).setWindowTitle("Add " + (*form).windowTitle());
     } else if (this->sender() == widget.editButton) {
-        form.setWindowTitle("Edit " + form.windowTitle());
+        int selectedCharacterId = widget.listView->currentIndex().data(0).toInt();
+        form = new CharacterForm(dbm.readCharacter(selectedCharacterId), this);
+        (*form).setWindowTitle("Edit " + (*form).windowTitle());
     }
+    (*form).setWindowFlags((*form).windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
-    connect(&form, SIGNAL(saveCharacter(Character)), this, SLOT(saveCharacter(Character)));
-    form.exec();
-    disconnect(&form, SIGNAL(saveCharacter(Character)), this, SLOT(saveCharacter(Character)));
+    connect(form, SIGNAL(saveCharacter(Character)), this, SLOT(saveCharacter(Character)));
+    (*form).exec();
+    disconnect(form, SIGNAL(saveCharacter(Character)), this, SLOT(saveCharacter(Character)));
 }
 
 void MainForm::deleteCharacter() {
-    int selectedCharacterId = widget.listView->currentIndex().row(); // wrong
+    int selectedCharacterId = widget.listView->currentIndex().data(0).toInt();
     dbm.deleteCharacter(selectedCharacterId);
-    setModel();
+    widget.listView->setModel(dbm.getCharacterModel());
+    setButtonsStates(QModelIndex());
 }
 
 void MainForm::saveCharacter(Character c) {
-    dbm.createCharacter(c);
-    widget.listView->update();
-    setModel();
+    if (c.getId().isEmpty()) {
+        dbm.createCharacter(c);
+    } else {
+        dbm.updateCharacter(c);
+    }
+    widget.listView->setModel(dbm.getCharacterModel());
+    setButtonsStates(QModelIndex());
 }
 
-void MainForm::setModel() {
-    QSqlTableModel* model = dbm.getCharacterModel();
-    widget.listView->setModel(model);
-    QModelIndex firstIndex = model->index(0, 0);
-    bool isRecord = firstIndex.isValid();
-    
-    if (isRecord) {
-        widget.listView->selectionModel()->select(firstIndex, QItemSelectionModel::Select);
-    }
-    widget.editButton->setEnabled(isRecord);
-    widget.deleteButton->setEnabled(isRecord);
-    widget.loginButton->setEnabled(isRecord);
+void MainForm::setButtonsStates(QModelIndex i) {
+    bool val = i.isValid();
+    widget.editButton->setEnabled(val);
+    widget.deleteButton->setEnabled(val);
+    widget.loginButton->setEnabled(val);
+    widget.listView->setFocus();
 }
 
 void MainForm::loginCharacter() {
-    QModelIndex currentIndex = widget.listView->currentIndex();
-    std::cout << currentIndex.data(0).toString().toStdString() << ":";
-    std::cout << currentIndex.data(1).toString().toStdString() << ":";
-    std::cout << currentIndex.data(2).toString().toStdString() << ":";
-    std::cout << currentIndex.data(3).toString().toStdString() << std::endl;
+    cout << widget.listView->currentIndex().data(0).toInt() << endl;
 }
 
 void MainForm::aboutNeoxTrainer() {
