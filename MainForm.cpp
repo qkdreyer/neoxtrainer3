@@ -32,10 +32,10 @@ MainForm::~MainForm() {
 
 void MainForm::execCharacterForm() {
     CharacterForm* form;
-    if (this->sender() == widget.addButton) {
+    if (this->sender() == widget.addButton) { // add
         form = new CharacterForm(Character(), this);
         (*form).setWindowTitle("Add " + (*form).windowTitle());
-    } else if (this->sender() == widget.editButton) {
+    } else { // edit
         int selectedCharacterId = widget.listView->currentIndex().data(0).toInt();
         form = new CharacterForm(dbm.readCharacter(selectedCharacterId), this);
         (*form).setWindowTitle("Edit " + (*form).windowTitle());

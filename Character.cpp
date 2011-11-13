@@ -16,7 +16,7 @@ Character::~Character() {
 }
 
 bool Character::exist() {
-    return !login.isEmpty();
+    return !id.isEmpty();
 }
 
 QString Character::getId() const {

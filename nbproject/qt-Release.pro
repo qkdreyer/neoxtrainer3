@@ -1,8 +1,8 @@
 # This file is generated automatically. Do not edit.
 # Use project properties -> Build -> Qt -> Expert -> Custom Definitions.
 TEMPLATE = app
-DESTDIR = dist/
-TARGET = neoxtrainer3
+DESTDIR = dist
+TARGET = neoxtrainer
 VERSION = 3.0
 CONFIG -= debug_and_release app_bundle lib_bundle
 CONFIG += release 

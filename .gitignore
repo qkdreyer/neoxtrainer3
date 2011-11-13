@@ -2,7 +2,7 @@
 /nbproject/private/
 moc_*
 ui_*
-object_script.neoxtrainer3
 .dep.inc
+*_resource.rc
+object_script.*
 characters
-neoxtrainer3_resource.rc

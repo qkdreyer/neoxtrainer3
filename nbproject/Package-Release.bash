@@ -12,8 +12,8 @@ CND_DISTDIR=dist
 CND_BUILDDIR=build
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}//neoxtrainer3
-OUTPUT_BASENAME=neoxtrainer3
+OUTPUT_PATH=${CND_DISTDIR}/neoxtrainer
+OUTPUT_BASENAME=neoxtrainer
 PACKAGE_TOP_DIR=neoxtrainer3/
 
 # Functions
@@ -53,7 +53,7 @@ function copyFileToTmpDir
 
 # Setup
 cd "${TOP}"
-mkdir -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package
+mkdir -p ${CND_DISTDIR}
 rm -rf ${NBTMPDIR}
 mkdir -p ${NBTMPDIR}
 
@@ -63,11 +63,11 @@ makeDirectory "${NBTMPDIR}/neoxtrainer3/bin"
 copyFileToTmpDir "${OUTPUT_PATH}.exe" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}.exe" 0755
 
 
-# Generate tar file
+# Generate zip file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/neoxtrainer3.tar
+rm -f ${CND_DISTDIR}/neoxtrainer3.zip
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/neoxtrainer3.tar *
+zip -r  ../../../../${CND_DISTDIR}/neoxtrainer3.zip *
 checkReturnCode
 
 # Cleanup
